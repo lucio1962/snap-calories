@@ -19,6 +19,7 @@ import { seedFromEnvironment } from '@/api/keyStore';
 import { ToastProvider } from '@/components/Toast';
 import { color } from '@/constants/theme';
 import { openDatabase } from '@/db';
+import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useProfileStore } from '@/store/profileStore';
 
 // The splash stays up until fonts and the database are both ready, so the first
@@ -26,6 +27,8 @@ import { useProfileStore } from '@/store/profileStore';
 void SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  useFrameworkReady();
+
   const [fontsLoaded, fontError] = useFonts({
     Fraunces_500Medium,
     Fraunces_600SemiBold,
